@@ -10,5 +10,4 @@ public class MercadinhoApplication {
 		SpringApplication.run(MercadinhoApplication.class, args);
 	}
 	
-
 }
