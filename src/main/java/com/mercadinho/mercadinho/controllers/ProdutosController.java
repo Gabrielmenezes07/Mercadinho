@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ public class ProdutosController {
 	private ProdutoConvert produtoConvert;
 
 	@GetMapping("/listaTodos")
-	public List<ProdutoOutput> listaProdutos() {
+	public List<ProdutoOutput> listarProdutos() {
 		List<ProdutoEntity> produtosEncontrados = produtoService.buscaTodosProdutos();
 
 		List<ProdutoOutput> produtoDeSaida = produtoConvert.listEntityToListOutput(produtosEncontrados);
@@ -51,17 +52,21 @@ public class ProdutosController {
 
 		return produtoConvertidoParaOutput;
 	}
-	
-	
+
 	@GetMapping("/{id}")
-	public ProdutoOutput buscaProdutoPorId(@PathVariable Long id) {
-	ProdutoEntity produtoEncontrado = produtoService.buscaProdutoPorId(id);
-		
-	ProdutoOutput produtoConvertidoParaOutput = produtoConvert.EntityToOutput(produtoEncontrado);
-		
-	return produtoConvertidoParaOutput;
+	public ProdutoOutput buscarProdutoPorId(@PathVariable Long id) {
+		ProdutoEntity produtoEncontrado = produtoService.buscaProdutoPorId(id);
+
+		ProdutoOutput produtoConvertidoParaOutput = produtoConvert.EntityToOutput(produtoEncontrado);
+
+		return produtoConvertidoParaOutput;
 	}
-	
+
+	@DeleteMapping("/{id}")
+	public void deletarProduto(@PathVariable Long id) {
+		ProdutoEntity produtoEncontrado = produtoService.buscaProdutoPorId(id);
+		
+		produtoService.deletarProduto(produtoEncontrado);
+	}
+
 }
-
-

@@ -30,4 +30,9 @@ public class ProdutoService {
 				.orElseThrow(() -> new RuntimeException("Não foi encontrado o produto pelo id: " + id));
 	}
 
+	@Transactional
+	public void deletarProduto(ProdutoEntity produtoEncontrado) {
+		produtoRepository.delete(produtoEncontrado);
+	}
+
 }
