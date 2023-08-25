@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mercadinho.mercadinho.dtos.inputs.ProdutoInput;
 import com.mercadinho.mercadinho.dtos.outputs.ProdutoOutput;
 import com.mercadinho.mercadinho.entities.ProdutoEntity;
 
@@ -22,5 +23,9 @@ public class ProdutoConvert {
 
 	public List<ProdutoOutput> listEntityToListOutput(List<ProdutoEntity> produtosEncontrados) {
 		return produtosEncontrados.stream().map(a -> this.EntityToOutput(a)).collect(Collectors.toList());
+	}
+
+	public ProdutoEntity InputToEntity(ProdutoInput produtoInput) {
+		return modelMapper.map(produtoInput, ProdutoEntity.class);
 	}
 }

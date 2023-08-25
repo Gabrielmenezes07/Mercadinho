@@ -7,7 +7,6 @@ import com.mercadinho.mercadinho.entities.ProdutoEntity;
 
 @Repository
 
-public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long>{
+public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 
-	
 }

@@ -14,12 +14,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProdutoEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	
+
 	@Column(name = "nome")
 	private String nome;
 
@@ -28,5 +28,5 @@ public class ProdutoEntity {
 
 	@Column(name = "preco")
 	private Double preco;
-	
+
 }

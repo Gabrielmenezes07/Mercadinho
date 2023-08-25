@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.mercadinho.mercadinho.entities.ProdutoEntity;
 import com.mercadinho.mercadinho.repositories.ProdutoRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ProdutoService {
 
@@ -16,6 +18,11 @@ public class ProdutoService {
 
 	public List<ProdutoEntity> buscaTodosProdutos() {
 		return produtoRepository.findAll();
+	}
+
+	@Transactional
+	public ProdutoEntity cadastrarProduto(ProdutoEntity produtoConvertidoParaEntity) {
+		return produtoRepository.save(produtoConvertidoParaEntity);
 	}
 
 }
