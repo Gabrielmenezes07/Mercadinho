@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mercadinho.mercadinho.converts.ProdutoConvert;
+import com.mercadinho.mercadinho.dtos.inputs.NomeProdutoInput;
 import com.mercadinho.mercadinho.dtos.inputs.ProdutoInput;
 import com.mercadinho.mercadinho.dtos.outputs.ProdutoOutput;
 import com.mercadinho.mercadinho.entities.ProdutoEntity;
@@ -42,7 +43,7 @@ public class ProdutosController {
 	}
 
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@PostMapping("/cadastro")
+	@PostMapping("/cadastros")
 	public ProdutoOutput cadastrarProdutos(@Valid @RequestBody ProdutoInput produtoInput) {
 		ProdutoEntity produtoConvertidoParaEntity = produtoConvert.InputToEntity(produtoInput);
 
@@ -79,4 +80,9 @@ public class ProdutosController {
 		return produtosConvertidosParaOutputs;
 	}
 
+	@GetMapping("/nomeProduto")
+	public ProdutoEntity buscarProdutoPeloNome(@RequestBody NomeProdutoInput nomeProdutoInput) {
+		ProdutoEntity produtoEncontrado = produtoService.buscarProdutoPeloNome(nomeProdutoInput.getNome());
+		return produtoEncontrado;
+	}
 }

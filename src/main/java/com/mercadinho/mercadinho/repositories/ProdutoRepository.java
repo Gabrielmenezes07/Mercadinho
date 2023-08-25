@@ -13,4 +13,7 @@ public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 
 	List<ProdutoEntity> findByQuantidade(Integer numero);
 
+	ProdutoEntity findByNome(String string);
+
+
 }

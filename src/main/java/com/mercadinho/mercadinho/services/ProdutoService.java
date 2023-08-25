@@ -41,4 +41,10 @@ public class ProdutoService {
 		return lista;
 	}
 
+	public ProdutoEntity buscarProdutoPeloNome(String string) {
+	ProdutoEntity produtoEncontrado	= produtoRepository.findByNome(string);
+		return produtoEncontrado ;
+		
+	}
+
 }
