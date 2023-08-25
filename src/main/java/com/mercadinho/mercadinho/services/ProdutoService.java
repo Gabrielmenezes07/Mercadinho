@@ -34,5 +34,11 @@ public class ProdutoService {
 	public void deletarProduto(ProdutoEntity produtoEncontrado) {
 		produtoRepository.delete(produtoEncontrado);
 	}
+	
+	public List<ProdutoEntity> buscarProdutosPorEstoqueZerado(Integer numero) {
+		numero = 0;
+		List<ProdutoEntity> lista = produtoRepository.findByQuantidade(numero);
+		return lista;
+	}
 
 }

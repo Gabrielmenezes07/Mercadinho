@@ -36,9 +36,9 @@ public class ProdutosController {
 	public List<ProdutoOutput> listarProdutos() {
 		List<ProdutoEntity> produtosEncontrados = produtoService.buscaTodosProdutos();
 
-		List<ProdutoOutput> produtoDeSaida = produtoConvert.listEntityToListOutput(produtosEncontrados);
+		List<ProdutoOutput> produtosDeSaidas = produtoConvert.listEntityToListOutput(produtosEncontrados);
 
-		return produtoDeSaida;
+		return produtosDeSaidas;
 	}
 
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -65,8 +65,18 @@ public class ProdutosController {
 	@DeleteMapping("/{id}")
 	public void deletarProduto(@PathVariable Long id) {
 		ProdutoEntity produtoEncontrado = produtoService.buscaProdutoPorId(id);
-		
+
 		produtoService.deletarProduto(produtoEncontrado);
+	}
+
+	@GetMapping("/semEstoque")
+	public List<ProdutoOutput> buscarProdutosPorEstoqueZerado(Integer numero) {
+		produtoService.buscarProdutosPorEstoqueZerado(numero);
+
+		List<ProdutoEntity> produtosEncontrados = produtoService.buscarProdutosPorEstoqueZerado(numero);
+
+		List<ProdutoOutput> produtosConvertidosParaOutputs = produtoConvert.listEntityToListOutput(produtosEncontrados);
+		return produtosConvertidosParaOutputs;
 	}
 
 }
