@@ -25,4 +25,9 @@ public class ProdutoService {
 		return produtoRepository.save(produtoConvertidoParaEntity);
 	}
 
+	public ProdutoEntity buscaProdutoPorId(Long id) {
+		return produtoRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Não foi encontrado o produto pelo id: " + id));
+	}
+
 }
